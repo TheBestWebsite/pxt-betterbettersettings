@@ -26,7 +26,7 @@ namespace blockSettings {
      * @param name Name of the setting to set
      */
     //% blockId=block_settings_write_boolean
-    //% block="set setting $name to $value"
+    //% block="set setting $name to boolean $value"
     //% weight=100 blockGap=8 group="Booleans"
     export function writeBoolean(name: string, value: boolean): void {
         settings.writeNumber(name, value == true ? 1 : 0);
@@ -49,7 +49,7 @@ namespace blockSettings {
      * @param name Name of the setting to set
      */
     //% blockId=block_settings_write_image
-    //% block="set setting $name to $value"
+    //% block="set setting $name to image $value"
     //% value.shadow="screen_image_picker"
     //% weight=100 blockGap=8 group="Images"
     export function writeImage(name: string, value: Image): void {
