@@ -50,6 +50,7 @@ namespace blockSettings {
      */
     //% blockId=block_settings_write_image
     //% block="set setting $name to $value"
+    //% value.shadow="screen_image_picker"
     //% weight=100 blockGap=8 group="Images"
     export function writeImage(name: string, value: Image): void {
         let width = value.width;
