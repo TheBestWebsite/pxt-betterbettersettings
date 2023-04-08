@@ -63,7 +63,7 @@ namespace blockSettings {
 
     /**
      * Read a boolean value (T/F) from settings
-     * @param name Name of the setting to set
+     * @param name Name of the setting to read
      */
     //% blockId=block_settings_read_boolean
     //% block="read setting $name as boolean"
@@ -89,7 +89,7 @@ namespace blockSettings {
 
     /**
      * Read an image object from settings
-     * @param name Name of the setting to set
+     * @param name Name of the setting to read
      */
     //% blockId=block_settings_read_image
     //% block="read setting $name as image"
@@ -108,11 +108,25 @@ namespace blockSettings {
         return arrayToImage(imageArray, width, height);
     }
 
+    /**
+     * Write a string array to settings
+     * @param name Name of the setting to set
+     */
+    //% blockId=block_settings_write_string_array
+    //% block="set setting $name to string array $value"
+    //% weight=40 blockGap=8 group="Arrays"
     export function writeStringArray(name: string, value: Array<string>) {
         let result = stringToNumberArray(value);
         settings.writeNumberArray(name, result);
     }
 
+    /**
+     * Read a string array from settings
+     * @param name Name of the setting to read
+     */
+    //% blockId=block_settings_write_string_array
+    //% block="read setting $name as string array"
+    //% weight=30 blockGap=8 group="Arrays"
     export function readStringArray(name: string): Array<string> {
         let value = settings.readNumberArray(name);
         if (value === undefined) {
