@@ -124,7 +124,7 @@ namespace blockSettings {
      * Read a string array from settings
      * @param name Name of the setting to read
      */
-    //% blockId=block_settings_write_string_array
+    //% blockId=block_settings_read_string_array
     //% block="read setting $name as string array"
     //% weight=30 blockGap=8 group="Arrays"
     export function readStringArray(name: string): Array<string> {
