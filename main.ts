@@ -18,6 +18,35 @@ function arrayToImage(value: Array<number>, width: number, height: number): Imag
     return img;
 }
 
+function stringToNumberArray(value: Array<string>): Array<number> {
+    let result = [];
+    for (let i = 0; i < value.length; i++) {
+        for (let j = 0; j < value[i].length; j++) {
+            result.push(value[i].charCodeAt(j));
+        }
+        if (i < value.length - 1) {
+            result.push(-1);
+        }
+    }
+    return result;
+}
+
+function stringFromNumberArray(value: Array<number>): Array<string> {
+    let result = [];
+    let current = "";
+    for (let i = 0; i < value.length; i++) {
+        if (value[i] === -1) {
+            result.push(current);
+            continue;
+        }
+        current += String.fromCharCode(value[i]);
+    }
+    if (value[-1] === -1) {
+        result.push("");
+    }
+    return result;
+}
+
 //% groups='["Numbers", "Strings", "Booleans", "Images", "Arrays", "Operations"]'
 namespace blockSettings {
 
@@ -67,6 +96,9 @@ namespace blockSettings {
     //% weight=90 blockGap=8 group="Images"
     export function readImage(name: string): Image {
         let value = settings.readNumberArray(name);
+        if (value === undefined) {
+            return undefined;
+        }
         if (value.length < 2) {
             throw "Settings error: Invalid image input";
         }
@@ -76,4 +108,16 @@ namespace blockSettings {
         return arrayToImage(imageArray, width, height);
     }
 
+    export function writeStringArray(name: string, value: Array<string>) {
+        let result = stringToNumberArray(value);
+        settings.writeNumberArray(name, result);
+    }
+
+    export function readStringArray(name: string): Array<string> {
+        let value = settings.readNumberArray(name);
+        if (value === undefined) {
+            return undefined;
+        }
+        return stringFromNumberArray(value);
+    }
 }
