@@ -134,4 +134,21 @@ namespace blockSettings {
         }
         return stringFromNumberArray(value);
     }
+
+    export function writeBooleanArray(name: string, value: Array<boolean>): void {
+        let result = value.map((value, index) => {
+            return value === true ? 1 : 0;
+        })
+        settings.writeNumberArray(name, result);
+    }
+
+    export function readBooleanArray(name: string): Array<boolean> {
+        let value = settings.readNumberArray(name);
+        if (value === undefined) {
+            return undefined;
+        }
+        return value.map((value, index) => {
+            return value === 0 ? true : false;
+        })
+    }
 }
