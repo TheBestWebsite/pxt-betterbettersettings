@@ -47,9 +47,9 @@ function stringFromNumberArray(value: Array<number>): Array<string> {
     return result;
 }
 
+//% block="BetterSettings"
 //% groups='["Numbers", "Strings", "Booleans", "Images", "Arrays", "Operations"]'
 namespace blockSettings {
-
     /**
      * Write a boolean value (T/F) to settings
      * @param name Name of the setting to set
@@ -141,7 +141,7 @@ namespace blockSettings {
      */
     //% blockId=block_settings_write_boolean_array
     //% block="set setting $name to boolean array $value"
-    //% weight=30 blockGap=8 group="Arrays"
+    //% weight=20 blockGap=8 group="Arrays"
     export function writeBooleanArray(name: string, value: Array<boolean>): void {
         let result = value.map((value, index) => {
             return value === true ? 1 : 0;
@@ -155,7 +155,7 @@ namespace blockSettings {
      */
     //% blockId=block_settings_read_boolean_array
     //% block="read setting $name as boolean array"
-    //% weight=20 blockGap=8 group="Arrays"
+    //% weight=10 blockGap=8 group="Arrays"
     export function readBooleanArray(name: string): Array<boolean> {
         let value = settings.readNumberArray(name);
         if (value === undefined) {
