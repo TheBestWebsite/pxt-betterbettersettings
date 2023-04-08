@@ -135,6 +135,13 @@ namespace blockSettings {
         return stringFromNumberArray(value);
     }
 
+    /**
+     * Write a boolean array to settings
+     * @param name Name of the setting to set
+     */
+    //% blockId=block_settings_write_boolean_array
+    //% block="set setting $name to boolean array $value"
+    //% weight=30 blockGap=8 group="Arrays"
     export function writeBooleanArray(name: string, value: Array<boolean>): void {
         let result = value.map((value, index) => {
             return value === true ? 1 : 0;
@@ -142,6 +149,13 @@ namespace blockSettings {
         settings.writeNumberArray(name, result);
     }
 
+    /**
+     * Read a boolean array from settings
+     * @param name Name of the setting to read
+     */
+    //% blockId=block_settings_read_boolean_array
+    //% block="read setting $name as boolean array"
+    //% weight=20 blockGap=8 group="Arrays"
     export function readBooleanArray(name: string): Array<boolean> {
         let value = settings.readNumberArray(name);
         if (value === undefined) {
