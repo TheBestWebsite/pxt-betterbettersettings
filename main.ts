@@ -49,8 +49,8 @@ function stringFromNumberArray(value: Array<number>): Array<string> {
 function imageArrayToNumberArray(value: Array<Image>): Array<number> {
     let result: Array<number> = [];
     for (let i = 0; i < value.length; i++) {
-        result.concat([value[i].width, value[i].height]);
-        result.concat(imageToArray(value[i]));
+        result = result.concat([value[i].width, value[i].height]);
+        result = result.concat(imageToArray(value[i]));
         if (i < value.length - 1) {
             result.push(-1);
         }
@@ -60,7 +60,7 @@ function imageArrayToNumberArray(value: Array<Image>): Array<number> {
 
 function numberArrayToImageArray(value: Array<number>): Array<Image> {
     let result: Array<Image> = [];
-    let imageData: Array<number>;
+    let imageData: Array<number> = [];
     let currentImage: Image;
     for (let i = 0; i < value.length; i++) {
         if (value[i] === -1) {
@@ -71,6 +71,8 @@ function numberArrayToImageArray(value: Array<number>): Array<Image> {
         }
         imageData.push(value[i]);
     }
+    currentImage = arrayToImage(imageData.slice(2), imageData[0], imageData[1])
+    result.push(currentImage);
     return result;
 }
 
