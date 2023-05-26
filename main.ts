@@ -42,9 +42,7 @@ function stringFromNumberArray(value: Array<number>): Array<string> {
         }
         current += String.fromCharCode(value[i]);
     }
-    if (value[-1] === -1) {
-        result.push("");
-    }
+    result.push(current);
     return result;
 }
 
