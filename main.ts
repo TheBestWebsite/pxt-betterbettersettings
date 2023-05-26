@@ -47,6 +47,34 @@ function stringFromNumberArray(value: Array<number>): Array<string> {
     return result;
 }
 
+function imageArrayToNumberArray(value: Array<Image>): Array<number> {
+    let result: Array<number> = [];
+    for (let i = 0; i < value.length; i++) {
+        result.concat([value[i].width, value[i].height]);
+        result.concat(imageToArray(value[i]));
+        if (i < value.length - 1) {
+            result.push(-1);
+        }
+    }
+    return result;
+}
+
+function numberArrayToImageArray(value: Array<number>): Array<Image> {
+    let result: Array<Image> = [];
+    let imageData: Array<number>;
+    let currentImage: Image;
+    for (let i = 0; i < value.length; i++) {
+        if (value[i] === -1) {
+            currentImage = arrayToImage(imageData.slice(2), imageData[0], imageData[1])
+            result.push(currentImage);
+            imageData = [];
+            continue;
+        }
+        imageData.push(value[i]);
+    }
+    return result;
+}
+
 //% block="BetterSettings"
 //% groups='["Numbers", "Strings", "Booleans", "Images", "Arrays", "Operations"]'
 namespace blockSettings {
@@ -164,5 +192,32 @@ namespace blockSettings {
         return value.map((value, index) => {
             return value === 0 ? true : false;
         })
+    }
+
+    /**
+     * Write an image array to settings
+     * @param name Name of the setting to set
+     */
+    //% blockId=block_settings_write_image_array
+    //% block="set setting $name to image array $value"
+    //% weight=9 blockGap=8 group="Arrays"
+    export function writeImageArray(name: string, value: Array<Image>): void {
+        let result = imageArrayToNumberArray(value);
+        settings.writeNumberArray(name, result);
+    }
+
+    /**
+     * Read an image array from settings
+     * @param name Name of the setting to read
+     */
+    //% blockId=block_settings_read_image_array
+    //% block="read setting $name as image array"
+    //% weight=8 blockGap=8 group="Arrays"
+    export function readImageArray(name: string): Array<Image> {
+        let value = settings.readNumberArray(name);
+        if (value === undefined) {
+            return undefined;
+        }
+        return numberArrayToImageArray(value);
     }
 }

@@ -1,17 +1,22 @@
 {
     "name": "BetterSettings",
     "version": "0.0.0",
+    "dependencies": {
+        "device": "*",
+        "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0"
+    },
     "files": [
         "images.g.jres",
         "images.g.ts",
         "main.ts"
     ],
+    "testDependencies": {},
+    "targetVersions": {
+        "target": "1.12.30",
+        "targetId": "arcade"
+    },
     "supportedTargets": [
         "arcade"
     ],
-    "dependencies": {
-        "device": "*",
-        "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0"
-    },
-    "testDependencies": {}
+    "preferredEditor": "tsprj"
 }
