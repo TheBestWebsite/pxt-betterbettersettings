@@ -37,6 +37,7 @@ function stringFromNumberArray(value: Array<number>): Array<string> {
     for (let i = 0; i < value.length; i++) {
         if (value[i] === -1) {
             result.push(current);
+            current = "";
             continue;
         }
         current += String.fromCharCode(value[i]);
