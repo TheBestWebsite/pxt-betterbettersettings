@@ -1,5 +1,5 @@
 {
-    "name": "BetterSettings",
+    "name": "BetterBetterSettings",
     "version": "0.0.0",
     "dependencies": {
         "device": "*",
@@ -12,7 +12,7 @@
     ],
     "testDependencies": {},
     "targetVersions": {
-        "target": "1.12.30",
+        "target": "2.0.60",
         "targetId": "arcade"
     },
     "supportedTargets": [
